@@ -5,6 +5,7 @@
 
 from libc.stdlib cimport free, malloc
 
+cimport mbedtls.pk as _pk
 cimport mbedtls._random as _rnd
 
 import mbedtls.exceptions as _exc
@@ -14,6 +15,32 @@ cdef _rnd.Random __rng = _rnd.default_rng()
 cpdef enum ECJPakeRole:
     CLIENT = MBEDTLS_ECJPAKE_CLIENT
     SERVER = MBEDTLS_ECJPAKE_SERVER
+
+cpdef enum ECPGroupId:
+    NONE = _pk.MBEDTLS_ECP_DP_NONE
+    SECP192R1 = _pk.MBEDTLS_ECP_DP_SECP192R1
+    SECP224R1 = _pk.MBEDTLS_ECP_DP_SECP224R1
+    SECP256R1 = _pk.MBEDTLS_ECP_DP_SECP256R1
+    SECP384R1 = _pk.MBEDTLS_ECP_DP_SECP384R1
+    SECP521R1 = _pk.MBEDTLS_ECP_DP_SECP521R1
+    BP256R1 = _pk.MBEDTLS_ECP_DP_BP256R1
+    BP384R1 = _pk.MBEDTLS_ECP_DP_BP384R1
+    BP512R1 = _pk.MBEDTLS_ECP_DP_BP512R1
+    CURVE25519 = _pk.MBEDTLS_ECP_DP_CURVE25519
+    SECP192K1 = _pk.MBEDTLS_ECP_DP_SECP192K1
+    SECP224K1 = _pk.MBEDTLS_ECP_DP_SECP224K1
+    SECP256K1 = _pk.MBEDTLS_ECP_DP_SECP256K1
+    CURVE448 = _pk.MBEDTLS_ECP_DP_CURVE448
+
+cpdef enum MDType: # this is not defined in _md.pxd so it is here
+    MBEDTLS_MD_NONE = 0
+    MBEDTLS_MD_MD5 = 1
+    MBEDTLS_MD_SHA1 = 2
+    MBEDTLS_MD_SHA224 = 3
+    MBEDTLS_MD_SHA256 = 4
+    MBEDTLS_MD_SHA384 = 5
+    MBEDTLS_MD_SHA512 = 6
+    MBEDTLS_MD_RIPEMD160 = 7
 
 cdef class ECJPake:
     def __init__(self):
