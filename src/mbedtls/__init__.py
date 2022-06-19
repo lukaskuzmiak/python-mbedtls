@@ -6,6 +6,7 @@
 
 
 import mbedtls.cipher as cipher
+import mbedtls.ecjpake as ecjpake
 import mbedtls.exceptions as exceptions
 import mbedtls.hashlib as hashlib
 import mbedtls.hkdf as hkdf
@@ -20,6 +21,7 @@ __version__ = "2.2.0"
 
 __all__ = (
     "cipher",
+    "ecjpake",
     "exceptions",
     "hash",
     "hashlib",
